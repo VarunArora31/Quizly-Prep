@@ -18,12 +18,12 @@ export const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-success/5" />
       
       {/* Hero Content */}
-      <div className="container mx-auto px-4 py-16 sm:py-20 relative z-10">
+      <div className="container mx-auto px-4 py-16 sm:py-20 relative z-10 flex-1 flex items-center">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-6 sm:space-y-8 animate-fade-in-up text-center lg:text-left">
@@ -90,9 +90,9 @@ export const Hero = () => {
         </div>
       </div>
 
-      {/* Features Preview - Hidden on mobile for cleaner design */}
-      <div className="absolute bottom-8 sm:bottom-20 left-1/2 transform -translate-x-1/2 w-full max-w-4xl px-4 hidden md:block">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
+      {/* Features Preview - Moved to relative positioning to prevent overlapping */}
+      <div className="container mx-auto px-4 mt-16 lg:mt-20 relative z-10 hidden md:block">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 max-w-4xl mx-auto">
           <Card className="skill-card text-center p-4 lg:p-6">
             <Upload className="w-6 h-6 lg:w-8 lg:h-8 text-primary mx-auto mb-2 lg:mb-3" />
             <h3 className="font-semibold mb-1 lg:mb-2 text-sm lg:text-base">Upload & Parse</h3>
