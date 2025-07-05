@@ -15,8 +15,18 @@ export const Header = () => {
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
-    await signOut();
-    navigate("/");
+    try {
+      console.log('Sign out initiated - User Agent:', navigator.userAgent);
+      console.log('Sign out initiated - Touch support:', 'ontouchstart' in window);
+      
+      await signOut();
+      console.log('Sign out successful, navigating to home');
+      navigate("/");
+    } catch (error) {
+      console.error('Sign out failed:', error);
+      // Still try to navigate even if sign out fails
+      navigate("/");
+    }
   };
 
   return (
