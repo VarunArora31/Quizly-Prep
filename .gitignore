@@ -25,3 +25,31 @@ dist-ssr
 
 # Environment variables
 .env
+.env.local
+.env.*.local
+.env.production
+
+# Supabase
+.supabase
+
+# API keys and secrets
+*.key
+*.pem
+*.p12
+*.crt
+*.cer
+*.pfx
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+supabase/logs/
+
+# Deployment scripts with credentials
+deploy-functions.ps1
+deploy-*.ps1
+deploy-*.sh
+deploy-*.bat

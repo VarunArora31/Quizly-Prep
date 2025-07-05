@@ -111,9 +111,9 @@
 
 3. **Set up environment variables**
    ```bash
-   cp .env.example .env.local
+   cp .env.example .env
    ```
-   Then edit `.env.local` with your keys (see [Environment Setup](#-environment-setup))
+   Then edit `.env` with your keys (see [Environment Setup](#-environment-setup))
 
 4. **Start development server**
    ```bash
@@ -132,7 +132,10 @@ npm run preview
 
 ## 🔧 Environment Setup
 
-Create a `.env.local` file in the root directory:
+### 🔐 **Security Note**
+This project uses environment variables to keep sensitive credentials secure. The `.env` file is automatically ignored by Git to prevent accidental exposure of API keys.
+
+Create a `.env` file in the root directory:
 
 ```env
 # Supabase Configuration
@@ -141,7 +144,16 @@ VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 
 # Google AI Configuration
 VITE_GEMINI_API_KEY=your_gemini_api_key
+
+# Supabase Project Configuration
+SUPABASE_PROJECT_ID=your_supabase_project_id
 ```
+
+### 🛡️ **Security Best Practices**
+- Never commit `.env` files to version control
+- Use `.env.example` as a template for required environment variables
+- Regenerate API keys if accidentally exposed
+- Use different API keys for development and production
 
 ### Getting API Keys
 
