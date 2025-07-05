@@ -1,6 +1,8 @@
-# 🎯 Quizly Prep
+# Quizly Prep 🎯
 
-> AI-powered interview preparation platform that creates personalized technical interview questions based on your resume.
+An AI-powered web application that helps users prepare for interviews by generating personalized quizzes based on the skills in their uploaded résumé.
+
+> 🚀 Live at: [https://quizly-prep.vercel.app](https://quizly-prep.vercel.app/)
 
 [![React](https://img.shields.io/badge/React-18.3.1-61DAFB?logo=react)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.5.3-3178C6?logo=typescript)](https://www.typescriptlang.org/)
