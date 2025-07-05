@@ -1,0 +1,236 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Quizly Prep Design System - Professional Interview Prep Platform */
+
+@layer base {
+  :root {
+    /* Primary Brand Colors - Professional Blue */
+    --primary: 214 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 214 100% 45%;
+    --primary-glow: 214 100% 70%;
+
+    /* Success/Skills Colors - Professional Green */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --success-light: 142 76% 92%;
+
+    /* Warning/Quiz Colors - Warm Orange */
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --warning-light: 38 92% 95%;
+
+    /* Neutral Palette */
+    --background: 0 0% 100%;
+    --foreground: 224 71% 4%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 224 71% 4%;
+    
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 9% 46%;
+    
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+    
+    --accent: 220 14% 96%;
+    --accent-foreground: 224 71% 4%;
+
+    /* Interactive Elements */
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 214 100% 50%;
+
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(214 100% 50%), hsl(220 100% 60%));
+    --gradient-success: linear-gradient(135deg, hsl(142 76% 36%), hsl(160 76% 40%));
+    --gradient-hero: linear-gradient(135deg, hsl(214 100% 50% / 0.1), hsl(220 100% 60% / 0.05));
+    
+    /* Shadows */
+    --shadow-elegant: 0 10px 30px -10px hsl(214 100% 50% / 0.2);
+    --shadow-card: 0 4px 12px -4px hsl(220 13% 50% / 0.1);
+    --shadow-glow: 0 0 40px hsl(214 100% 70% / 0.3);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark mode - Professional Dark Theme */
+    --background: 224 71% 4%;
+    --foreground: 210 40% 98%;
+
+    --card: 224 71% 6%;
+    --card-foreground: 210 40% 98%;
+
+    --primary: 214 100% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 214 100% 55%;
+    --primary-glow: 214 100% 75%;
+
+    --success: 142 76% 45%;
+    --success-foreground: 0 0% 100%;
+    --success-light: 142 76% 15%;
+
+    --warning: 38 92% 55%;
+    --warning-foreground: 0 0% 100%;
+    --warning-light: 38 92% 12%;
+
+    --secondary: 215 27% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 215 27% 17%;
+    --muted-foreground: 217 9% 65%;
+
+    --accent: 215 27% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --border: 215 27% 17%;
+    --input: 215 27% 17%;
+    --ring: 214 100% 60%;
+
+    --destructive: 0 73% 57%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Dark mode gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(214 100% 60%), hsl(220 100% 65%));
+    --gradient-success: linear-gradient(135deg, hsl(142 76% 45%), hsl(160 76% 50%));
+    --gradient-hero: linear-gradient(135deg, hsl(214 100% 60% / 0.1), hsl(220 100% 65% / 0.05));
+    
+    /* Dark mode shadows */
+    --shadow-elegant: 0 10px 30px -10px hsl(214 100% 60% / 0.3);
+    --shadow-card: 0 4px 12px -4px hsl(0 0% 0% / 0.3);
+    --shadow-glow: 0 0 40px hsl(214 100% 75% / 0.4);
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+@layer components {
+  /* Professional Button Variants */
+  .btn-hero {
+    @apply bg-primary text-primary-foreground px-8 py-4 text-lg font-semibold rounded-xl;
+    @apply hover:shadow-lg transform hover:-translate-y-0.5;
+    @apply transition-all duration-300 ease-out;
+    background: var(--gradient-primary);
+    box-shadow: var(--shadow-elegant);
+  }
+
+  .btn-hero:hover {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Upload Zone Styles */
+  .upload-zone {
+    @apply border-2 border-dashed border-border rounded-2xl p-8;
+    @apply hover:border-primary hover:bg-gradient-to-br hover:from-primary/5 hover:to-transparent;
+    @apply transition-all duration-300 ease-out cursor-pointer;
+  }
+
+  .upload-zone.drag-active {
+    @apply border-primary bg-gradient-to-br from-primary/10 to-transparent;
+    box-shadow: var(--shadow-elegant);
+  }
+
+  /* Card Styles */
+  .skill-card {
+    @apply bg-card border border-border rounded-xl p-6;
+    @apply hover:shadow-lg hover:-translate-y-1;
+    @apply transition-all duration-300 ease-out;
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Professional Typography */
+  .heading-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Animation Classes */
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .animate-bounce-in {
+    animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  }
+}
+
+@layer utilities {
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent;
+  }
+}
+
+/* Custom Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(-50px);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05) translateY(-10px);
+  }
+  70% {
+    transform: scale(0.95) translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

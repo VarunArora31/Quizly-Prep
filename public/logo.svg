@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
+  <!-- Background circle with gradient -->
+  <circle cx="256" cy="256" r="240" fill="url(#gradient)" stroke="#2563eb" stroke-width="4"/>
+  
+  <!-- Book/Quiz icon -->
+  <g transform="translate(256, 256)">
+    <!-- Book pages -->
+    <rect x="-80" y="-60" width="160" height="120" rx="8" fill="white" stroke="#2563eb" stroke-width="3"/>
+    
+    <!-- Quiz lines -->
+    <line x1="-60" y1="-30" x2="60" y2="-30" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/>
+    <line x1="-60" y1="-10" x2="40" y2="-10" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/>
+    <line x1="-60" y1="10" x2="50" y2="10" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/>
+    <line x1="-60" y1="30" x2="30" y2="30" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- Checkmark for "correct answer" -->
+    <circle cx="45" cy="-10" r="12" fill="#10b981" stroke="white" stroke-width="2"/>
+    <path d="M39 -10 L43 -6 L51 -14" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Q letter for Quiz -->
+    <circle cx="-50" cy="-40" r="15" fill="none" stroke="#2563eb" stroke-width="4"/>
+    <line x1="-45" y1="-35" x2="-40" y2="-30" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
+</svg>

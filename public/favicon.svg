@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <!-- Background -->
+  <rect width="32" height="32" rx="6" fill="#2563eb"/>
+  
+  <!-- Q letter for Quizly -->
+  <circle cx="16" cy="14" r="8" fill="none" stroke="white" stroke-width="2"/>
+  <line x1="20" y1="18" x2="22" y2="20" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Small book/quiz indicator -->
+  <rect x="8" y="22" width="16" height="2" rx="1" fill="white"/>
+  <rect x="10" y="25" width="12" height="2" rx="1" fill="white"/>
+</svg>
