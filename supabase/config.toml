@@ -1,1 +1,28 @@
 project_id = "${SUPABASE_PROJECT_ID}"
+
+[auth]
+enable_signup = true
+site_url = "${SITE_URL}"
+additional_redirect_urls = ["${ADDITIONAL_REDIRECT_URLS}"]
+jwt_expiry = 3600
+password_min_length = 6
+external_email_enabled = true
+external_phone_enabled = false
+enable_anonymous_sign_ins = false
+enable_manual_linking = false
+
+[auth.email]
+enable_signup = true
+double_confirm_changes = true
+enable_confirmations = true
+secure_email_change_enabled = true
+
+# SMTP configuration for Brevo
+[auth.external.email]
+from_address = "${SMTP_SENDER_EMAIL}"
+from_name = "${SMTP_SENDER_NAME}"
+smtp_host = "${SMTP_HOST}"
+smtp_port = 587
+smtp_user = "${SMTP_USER}"
+smtp_pass = "${SMTP_PASS}"
+smtp_admin_email = "${SMTP_ADMIN_EMAIL}"

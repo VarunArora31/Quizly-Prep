@@ -17,6 +17,11 @@ export default {
 			'lg': '1024px',
 			'xl': '1280px',
 			'2xl': '1536px',
+			// Custom responsive breakpoints for mobile and tablet
+			'mobile': {'max': '767px'},
+			'tablet': {'min': '768px', 'max': '1023px'},
+			'desktop': {'min': '1024px'},
+			'large-mobile': {'min': '414px', 'max': '767px'},
 		},
 		container: {
 			center: true,
@@ -36,7 +41,8 @@ export default {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))',
 					hover: 'hsl(var(--primary-hover))',
-					glow: 'hsl(var(--primary-glow))'
+					glow: 'hsl(var(--primary-glow))',
+					accent: 'hsl(var(--primary-accent))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -45,12 +51,14 @@ export default {
 				success: {
 					DEFAULT: 'hsl(var(--success))',
 					foreground: 'hsl(var(--success-foreground))',
-					light: 'hsl(var(--success-light))'
+					light: 'hsl(var(--success-light))',
+					glow: 'hsl(var(--success-glow))'
 				},
 				warning: {
 					DEFAULT: 'hsl(var(--warning))',
 					foreground: 'hsl(var(--warning-foreground))',
-					light: 'hsl(var(--warning-light))'
+					light: 'hsl(var(--warning-light))',
+					glow: 'hsl(var(--warning-glow))'
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',

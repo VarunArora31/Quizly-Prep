@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { PasswordInput } from "@/components/ui/password-input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
@@ -168,9 +169,8 @@ export default function Settings() {
                 <form onSubmit={handlePasswordChange} className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="old-password">Current Password</Label>
-                    <Input
+                    <PasswordInput
                       id="old-password"
-                      type="password"
                       placeholder="Enter your current password"
                       value={oldPassword}
                       onChange={(e) => setOldPassword(e.target.value)}
@@ -179,9 +179,8 @@ export default function Settings() {
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="new-password">New Password</Label>
-                    <Input
+                    <PasswordInput
                       id="new-password"
-                      type="password"
                       placeholder="Enter your new password"
                       value={newPassword}
                       onChange={(e) => setNewPassword(e.target.value)}
@@ -191,9 +190,8 @@ export default function Settings() {
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="confirm-new-password">Confirm New Password</Label>
-                    <Input
+                    <PasswordInput
                       id="confirm-new-password"
-                      type="password"
                       placeholder="Confirm your new password"
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}

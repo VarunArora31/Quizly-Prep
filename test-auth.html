@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Supabase Auth Test</title>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <h1>Supabase Authentication Test</h1>
+    
+    <div>
+        <h3>Test Signup</h3>
+        <input type="email" id="email" placeholder="Enter email" value="test@example.com">
+        <input type="password" id="password" placeholder="Enter password" value="test123456">
+        <button onclick="testSignup()">Test Signup</button>
+    </div>
+    
+    <div>
+        <h3>Results</h3>
+        <pre id="results"></pre>
+    </div>
+
+    <script>
+        // Initialize Supabase
+        const supabaseUrl = 'https://ygvzeoyhpesjtaqxijsk.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlndnplb3locGVzanRhcXhpanNrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE2OTczNTIsImV4cCI6MjA2NzI3MzM1Mn0.EYIl4cxqbVZcYFbFUqwRPUpyDo5v1zNmVUtsxedb-9g';
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function testSignup() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const resultsDiv = document.getElementById('results');
+            
+            resultsDiv.textContent = 'Testing signup...';
+            
+            try {
+                const { data, error } = await supabase.auth.signUp({
+                    email: email,
+                    password: password,
+                    options: {
+                        emailRedirectTo: window.location.origin + '/auth/callback'
+                    }
+                });
+                
+                if (error) {
+                    resultsDiv.textContent = `Error: ${JSON.stringify(error, null, 2)}`;
+                } else {
+                    resultsDiv.textContent = `Success: ${JSON.stringify(data, null, 2)}`;
+                }
+            } catch (err) {
+                resultsDiv.textContent = `Exception: ${err.message}`;
+            }
+        }
+    </script>
+</body>
+</html>

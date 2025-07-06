@@ -9,6 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { BookOpen, Loader2 } from "lucide-react";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 // Email validation utility
 const validateEmail = (email: string) => {
@@ -341,21 +342,27 @@ export default function Auth() {
 
   if (isUpdatePasswordMode) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background p-4">
-        <div className="w-full max-w-md">
+      <div className="min-h-screen flex items-center justify-center relative">
+        {/* Animated Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-primary/10 dark:from-primary/10 dark:via-background dark:to-primary/5">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/20 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-purple-500/10 via-transparent to-transparent" />
+        </div>
+        
+        <div className="relative w-full max-w-md mx-auto p-4">
           {/* Logo */}
-          <div className="flex items-center justify-center gap-3 mb-8">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary-glow flex items-center justify-center">
-              <BookOpen className="w-7 h-7 text-white" />
+          <div className="flex items-center justify-center gap-3 mb-8 animate-bounce-in">
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary-glow flex items-center justify-center shadow-lg shadow-primary/25">
+              <BookOpen className="w-8 h-8 text-white" />
             </div>
-            <h1 className="text-3xl font-bold gradient-text">Quizly Prep</h1>
+            <h1 className="text-4xl font-bold gradient-text">Quizly Prep</h1>
           </div>
 
-          <Card>
-            <CardHeader className="text-center">
-              <CardTitle>Update Password</CardTitle>
-              <CardDescription>
-                Please enter your new password
+          <Card className="backdrop-blur-xl bg-card/80 border-border/50 shadow-2xl shadow-primary/10">
+            <CardHeader className="text-center space-y-2">
+              <CardTitle className="text-2xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">Update Password</CardTitle>
+              <CardDescription className="text-muted-foreground">
+                Please enter your new password to continue
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -395,34 +402,61 @@ export default function Auth() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Theme Toggle */}
+      <div className="absolute top-4 right-4 z-50">
+        <ThemeToggle />
+      </div>
+      
+      {/* Animated Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-primary/10 dark:from-primary/10 dark:via-background dark:to-primary/5">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/20 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-purple-500/10 via-transparent to-transparent" />
+        {/* Floating Elements */}
+        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary/30 rounded-full animate-pulse" />
+        <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-purple-500/40 rounded-full animate-pulse delay-1000" />
+        <div className="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-primary/20 rounded-full animate-pulse delay-500" />
+      </div>
+      
+      <div className="relative w-full max-w-md mx-auto p-4 sm:p-6">
         {/* Logo */}
-        <div className="flex items-center justify-center gap-3 mb-8">
-          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary-glow flex items-center justify-center">
-            <BookOpen className="w-7 h-7 text-white" />
+        <div className="flex items-center justify-center gap-3 mb-8 animate-bounce-in">
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary-glow flex items-center justify-center shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-300">
+            <BookOpen className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-3xl font-bold gradient-text">Quizly Prep</h1>
+          <h1 className="text-4xl sm:text-5xl font-bold gradient-text">Quizly Prep</h1>
         </div>
 
-        <Card>
-          <CardHeader className="text-center">
-            <CardTitle>Welcome</CardTitle>
-            <CardDescription>
-              Sign in to your account or create a new one to get started
+        <Card className="backdrop-blur-xl bg-card/80 border-border/50 shadow-2xl shadow-primary/10 hover:shadow-primary/20 transition-all duration-500">
+          <CardHeader className="text-center space-y-3 pb-6">
+            <CardTitle className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+              Welcome Back
+            </CardTitle>
+            <CardDescription className="text-muted-foreground text-base">
+              Sign in to your account or create a new one to get started with your interview preparation
             </CardDescription>
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="signin" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="signin">Sign In</TabsTrigger>
-                <TabsTrigger value="signup">Sign Up</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-2 bg-muted/30 backdrop-blur-sm h-12 rounded-xl border border-border/50">
+                <TabsTrigger 
+                  value="signin" 
+                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all duration-300 rounded-lg font-medium"
+                >
+                  Sign In
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="signup"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all duration-300 rounded-lg font-medium"
+                >
+                  Sign Up
+                </TabsTrigger>
               </TabsList>
               
               <TabsContent value="signin">
-                <form onSubmit={handleSignIn} className="space-y-4">
+                <form onSubmit={handleSignIn} className="space-y-6 pt-6">
                   <div className="space-y-2">
-                    <Label htmlFor="signin-email">Email</Label>
+                    <Label htmlFor="signin-email" className="text-sm font-medium text-foreground/80">Email Address</Label>
                     <Input
                       id="signin-email"
                       type="email"
@@ -430,29 +464,35 @@ export default function Auth() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
+                      className="h-12 bg-background/50 border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all duration-200"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="signin-password">Password</Label>
+                    <Label htmlFor="signin-password" className="text-sm font-medium text-foreground/80">Password</Label>
                     <PasswordInput
                       id="signin-password"
                       placeholder="Enter your password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
+                      className="h-12 bg-background/50 border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all duration-200"
                     />
                   </div>
-                  <Button type="submit" className="w-full" disabled={loading}>
+                  <Button 
+                    type="submit" 
+                    className="w-full h-12 bg-gradient-to-r from-primary to-primary-hover hover:from-primary-hover hover:to-primary text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]" 
+                    disabled={loading}
+                  >
                     {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                    Sign In
+                    Sign In to Continue
                   </Button>
                 </form>
               </TabsContent>
               
               <TabsContent value="signup">
-                <form onSubmit={handleSignUp} className="space-y-4">
+                <form onSubmit={handleSignUp} className="space-y-6 pt-6">
                   <div className="space-y-2">
-                    <Label htmlFor="signup-email">Email</Label>
+                    <Label htmlFor="signup-email" className="text-sm font-medium text-foreground/80">Email Address</Label>
                     <Input
                       id="signup-email"
                       type="email"
@@ -460,23 +500,32 @@ export default function Auth() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
+                      className="h-12 bg-background/50 border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all duration-200"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="signup-password">Password</Label>
+                    <Label htmlFor="signup-password" className="text-sm font-medium text-foreground/80">Password</Label>
                     <PasswordInput
                       id="signup-password"
-                      placeholder="Create a password"
+                      placeholder="Create a secure password (min. 6 characters)"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
                       minLength={6}
+                      className="h-12 bg-background/50 border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all duration-200"
                     />
                   </div>
-                  <Button type="submit" className="w-full" disabled={loading}>
+                  <Button 
+                    type="submit" 
+                    className="w-full h-12 bg-gradient-to-r from-primary to-primary-hover hover:from-primary-hover hover:to-primary text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]" 
+                    disabled={loading}
+                  >
                     {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                    Create Account
+                    Create Your Account
                   </Button>
+                  <p className="text-xs text-muted-foreground text-center">
+                    By creating an account, you agree to our terms of service and privacy policy.
+                  </p>
                 </form>
               </TabsContent>
             </Tabs>

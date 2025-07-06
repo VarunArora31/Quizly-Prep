@@ -178,41 +178,52 @@ export const Quiz = ({ quiz, onQuizComplete, onBack }: QuizProps) => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-4 sm:p-6">
-      <Card>
-        <CardHeader className="p-4 sm:p-6">
-          <div className="flex items-center justify-between mb-3 sm:mb-0">
-            <Button variant="ghost" size="sm" onClick={onBack} className="text-xs sm:text-sm">
+    <div className="max-w-4xl mx-auto p-3 sm:p-4 lg:p-6">
+      <Card className="card-mobile">
+        <CardHeader className="p-3 sm:p-4 lg:p-6">
+          <div className="flex items-center justify-between mb-2 sm:mb-3">
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              onClick={onBack} 
+              className="text-xs sm:text-sm touch-target hover-lift"
+            >
               <ArrowLeft className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
               Back
             </Button>
-            <div className="text-xs sm:text-sm text-muted-foreground">
-              Question {currentQuestionIndex + 1} of {quiz.questions.length}
+            <div className="text-xs sm:text-sm text-muted-foreground bg-muted/50 px-2 py-1 rounded">
+              {currentQuestionIndex + 1} of {quiz.questions.length}
             </div>
           </div>
-          <CardTitle className="text-lg sm:text-xl mb-3">{quiz.title}</CardTitle>
+          <CardTitle className="text-base sm:text-lg lg:text-xl mb-2 sm:mb-3 leading-tight">{quiz.title}</CardTitle>
           <CardDescription>
-            <div className="flex flex-wrap gap-1 sm:gap-2 mb-3 sm:mb-4">
+            <div className="flex flex-wrap gap-1 sm:gap-2 mb-2 sm:mb-3 lg:mb-4">
               {quiz.skills.slice(0, 5).map((skill, index) => (
                 <Badge key={index} variant="outline" className="text-xs">
                   {skill}
                 </Badge>
               ))}
               {quiz.skills.length > 5 && (
-                <Badge variant="outline" className="text-xs">+{quiz.skills.length - 5} more</Badge>
+                <Badge variant="outline" className="text-xs">+{quiz.skills.length - 5}</Badge>
               )}
             </div>
-            <Progress value={progress} className="h-2" />
+            <div className="space-y-1">
+              <div className="flex justify-between text-xs text-muted-foreground">
+                <span>Progress</span>
+                <span>{Math.round(progress)}%</span>
+              </div>
+              <Progress value={progress} className="h-2" />
+            </div>
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4 sm:space-y-6 p-4 sm:p-6">
+        <CardContent className="space-y-3 sm:space-y-4 lg:space-y-6 p-3 sm:p-4 lg:p-6">
           <div>
-            <h3 className="text-base sm:text-lg font-semibold mb-4">{currentQuestion.question}</h3>
-            <RadioGroup value={selectedAnswer} onValueChange={handleAnswerSelect}>
+            <h3 className="text-sm sm:text-base lg:text-lg font-semibold mb-3 sm:mb-4 leading-tight">{currentQuestion.question}</h3>
+            <RadioGroup value={selectedAnswer} onValueChange={handleAnswerSelect} className="space-y-2 sm:space-y-3">
               {currentQuestion.options.map((option, index) => (
-                <div key={index} className="flex items-start space-x-2 sm:space-x-3 p-3 rounded-lg border hover:bg-muted/50">
-                  <RadioGroupItem value={option.charAt(0)} id={`option-${index}`} className="mt-0.5" />
-                  <Label htmlFor={`option-${index}`} className="flex-1 cursor-pointer text-sm sm:text-base leading-relaxed">
+                <div key={index} className="flex items-start space-x-2 sm:space-x-3 p-2 sm:p-3 rounded-lg border hover:bg-muted/50 transition-colors touch-target">
+                  <RadioGroupItem value={option.charAt(0)} id={`option-${index}`} className="mt-0.5 touch-target" />
+                  <Label htmlFor={`option-${index}`} className="flex-1 cursor-pointer text-xs sm:text-sm lg:text-base leading-relaxed">
                     {option}
                   </Label>
                 </div>
@@ -220,18 +231,22 @@ export const Quiz = ({ quiz, onQuizComplete, onBack }: QuizProps) => {
             </RadioGroup>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-3 sm:justify-between">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-2 sm:pt-4">
             <Button 
               variant="outline" 
               onClick={handlePrevious} 
               disabled={currentQuestionIndex === 0}
-              className="text-sm sm:text-base"
+              className="text-sm sm:text-base touch-target order-2 sm:order-1"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
               <span className="hidden sm:inline">Previous</span>
               <span className="sm:hidden">Prev</span>
             </Button>
-            <Button onClick={handleNext} disabled={!selectedAnswer} className="text-sm sm:text-base">
+            <Button 
+              onClick={handleNext} 
+              disabled={!selectedAnswer} 
+              className="text-sm sm:text-base touch-target button-ripple order-1 sm:order-2 flex-1 sm:flex-initial"
+            >
               {currentQuestionIndex === quiz.questions.length - 1 ? (
                 <span>Finish Quiz</span>
               ) : (

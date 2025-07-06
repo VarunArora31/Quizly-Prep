@@ -354,44 +354,53 @@ export const ResumeUpload = ({ onUploadComplete }: ResumeUploadProps) => {
   };
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
+    <section className="py-8 sm:py-12 lg:py-16 xl:py-20 bg-muted/30">
+      <div className="container mx-auto px-3 sm:px-6 lg:px-4">
+        <div className="text-center mb-6 sm:mb-8 lg:mb-12">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold mb-3 sm:mb-4 heading-responsive">
             Upload Your <span className="gradient-text">Resume</span>
           </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed px-2">
             Get started by uploading your resume. Our AI will analyze your skills 
             and create personalized interview questions.
           </p>
         </div>
 
         <div className="max-w-2xl mx-auto">
-          <Card className="p-4 sm:p-6 lg:p-8">
+          <Card className="p-3 sm:p-4 lg:p-6 xl:p-8 card-mobile">
             {!uploadedFile ? (
               <>
                 {/* Upload Zone */}
                 <div
-                  className={`upload-zone ${isDragActive ? 'drag-active' : ''}`}
+                  className={`upload-zone ${isDragActive ? 'drag-active' : ''} touch-target mobile-scroll`}
                   onDragEnter={handleDragEnter}
                   onDragLeave={handleDragLeave}
                   onDragOver={handleDragOver}
                   onDrop={handleDrop}
                   onClick={() => document.getElementById('file-input')?.click()}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      document.getElementById('file-input')?.click();
+                    }
+                  }}
                 >
-                  <div className="text-center space-y-3 sm:space-y-4">
-                    <Upload className="w-10 h-10 sm:w-12 sm:h-12 text-primary mx-auto" />
+                  <div className="text-center space-y-2 sm:space-y-3 lg:space-y-4 py-4 sm:py-6">
+                    <Upload className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-primary mx-auto" />
                     <div>
-                      <h3 className="text-base sm:text-lg font-semibold mb-2">
+                      <h3 className="text-sm sm:text-base lg:text-lg font-semibold mb-1 sm:mb-2">
                         <span className="hidden sm:inline">Drop your resume here</span>
                         <span className="sm:hidden">Upload Resume</span>
                       </h3>
-                      <p className="text-sm sm:text-base text-muted-foreground">
-                        <span className="hidden sm:inline">Or </span><span className="text-primary cursor-pointer">Click to browse</span>
+                      <p className="text-xs sm:text-sm lg:text-base text-muted-foreground">
+                        <span className="hidden sm:inline">Or </span><span className="text-primary cursor-pointer hover:underline">Click to browse</span>
                       </p>
                     </div>
-                    <p className="text-xs sm:text-sm text-muted-foreground">
-                      Supports PDF and DOCX files up to 10MB
+                    <p className="text-xs sm:text-sm text-muted-foreground px-2">
+                      <span className="hidden sm:inline">Supports PDF and DOCX files up to 10MB</span>
+                      <span className="sm:hidden">PDF/DOCX up to 10MB</span>
                     </p>
                   </div>
                 </div>
@@ -407,19 +416,19 @@ export const ResumeUpload = ({ onUploadComplete }: ResumeUploadProps) => {
             ) : (
               <>
                 {/* Upload Progress */}
-                <div className="space-y-4 sm:space-y-6">
-                  <div className="flex items-center gap-3 sm:gap-4">
-                    <FileText className="w-6 h-6 sm:w-8 sm:h-8 text-primary flex-shrink-0" />
+                <div className="space-y-3 sm:space-y-4 lg:space-y-6">
+                  <div className="flex items-center gap-2 sm:gap-3 lg:gap-4 p-2 sm:p-3 rounded-lg bg-muted/30">
+                    <FileText className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-primary flex-shrink-0" />
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-semibold text-sm sm:text-base truncate">{uploadedFile.name}</h3>
+                      <h3 className="font-semibold text-xs sm:text-sm lg:text-base truncate leading-tight">{uploadedFile.name}</h3>
                       <p className="text-xs sm:text-sm text-muted-foreground">
                         {(uploadedFile.size / 1024 / 1024).toFixed(2)} MB
                       </p>
                     </div>
                     {isUploading ? (
-                      <AlertCircle className="w-5 h-5 sm:w-6 sm:h-6 text-warning animate-spin flex-shrink-0" />
+                      <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-warning animate-spin flex-shrink-0" />
                     ) : (
-                      <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-success flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-success flex-shrink-0" />
                     )}
                   </div>
 
@@ -435,34 +444,40 @@ export const ResumeUpload = ({ onUploadComplete }: ResumeUploadProps) => {
 
                   {/* Extracted Skills */}
                   {extractedSkills.length > 0 && (
-                    <div className="space-y-4">
-                      <h4 className="font-semibold text-success">
-                        ✓ Skills Extracted Successfully ({extractedSkills.length} skills)
+                    <div className="space-y-3 sm:space-y-4">
+                      <h4 className="font-semibold text-success text-sm sm:text-base flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 flex-shrink-0" />
+                        <span>
+                          Skills Extracted Successfully 
+                          <span className="text-xs sm:text-sm">({extractedSkills.length} skills)</span>
+                        </span>
                       </h4>
-                      <div className="text-xs text-muted-foreground mb-2">
-                        Debug: File type: {uploadedFile?.type}, Size: {uploadedFile ? (uploadedFile.size / 1024).toFixed(1) : 0}KB
-                      </div>
-                      <div className="flex flex-wrap gap-2">
+                      {process.env.NODE_ENV === 'development' && (
+                        <div className="text-xs text-muted-foreground mb-2 p-2 bg-muted/50 rounded">
+                          Debug: File type: {uploadedFile?.type}, Size: {uploadedFile ? (uploadedFile.size / 1024).toFixed(1) : 0}KB
+                        </div>
+                      )}
+                      <div className="flex flex-wrap gap-1 sm:gap-2 max-h-32 sm:max-h-40 overflow-y-auto mobile-scroll p-2 bg-muted/20 rounded-lg">
                         {extractedSkills.map((skill, index) => (
-                          <Badge key={index} variant="secondary">
+                          <Badge key={index} variant="secondary" className="text-xs sm:text-sm">
                             {skill}
                           </Badge>
                         ))}
                       </div>
                       
-                      <div className="flex flex-col sm:flex-row gap-3 pt-4">
+                      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-2 sm:pt-4">
                         <Button 
                           onClick={generateQuiz} 
-                          className="flex-1 text-sm sm:text-base"
+                          className="flex-1 text-sm sm:text-base touch-target button-ripple"
                           disabled={isGeneratingQuiz}
                         >
-                          {isGeneratingQuiz && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                          {isGeneratingQuiz && <Loader2 className="mr-2 h-3 h-3 sm:h-4 sm:w-4 animate-spin" />}
                           <span className="hidden sm:inline">Generate Quiz Questions</span>
                           <span className="sm:hidden">Generate Quiz</span>
                         </Button>
                         <Button 
                           variant="outline" 
-                          className="text-sm sm:text-base"
+                          className="text-sm sm:text-base touch-target"
                           onClick={() => {
                             setUploadedFile(null);
                             setExtractedSkills([]);
