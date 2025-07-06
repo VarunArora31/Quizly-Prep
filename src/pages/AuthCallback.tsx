@@ -11,7 +11,49 @@ export default function AuthCallback() {
   useEffect(() => {
     const handleAuthCallback = async () => {
       try {
-        // Get the session from the URL
+        // Check URL parameters and hash fragments for auth state
+        const urlParams = new URLSearchParams(window.location.search);
+        const hashParams = new URLSearchParams(window.location.hash.substring(1));
+        
+        const type = urlParams.get('type') || hashParams.get('type');
+        const accessToken = hashParams.get('access_token');
+        const refreshToken = hashParams.get('refresh_token');
+        
+        console.log('Auth callback - URL:', window.location.href);
+        console.log('Auth callback - search:', window.location.search);
+        console.log('Auth callback - hash:', window.location.hash);
+        console.log('Auth callback - type:', type, 'has tokens:', !!accessToken);
+        
+        if (type === 'recovery' || (accessToken && type)) {
+          // This is a password reset callback
+          if (accessToken && refreshToken) {
+            // Set the session from the tokens
+            const { error } = await supabase.auth.setSession({
+              access_token: accessToken,
+              refresh_token: refreshToken
+            });
+            
+            if (error) {
+              console.error('Error setting session:', error);
+              toast({
+                title: "Authentication Error",
+                description: "Invalid reset link. Please try requesting a new password reset.",
+                variant: "destructive",
+              });
+              navigate('/auth');
+              return;
+            }
+          }
+          
+          toast({
+            title: "Reset Link Verified",
+            description: "Please enter your new password.",
+          });
+          navigate('/auth?mode=update-password');
+          return;
+        }
+        
+        // Handle regular email confirmation
         const { data, error } = await supabase.auth.getSession();
         
         if (error) {

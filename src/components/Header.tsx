@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { BookOpen, Menu, User, LogOut } from "lucide-react";
+import { BookOpen, Menu, User, LogOut, Settings } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import {
@@ -72,6 +72,10 @@ export const Header = () => {
                     <DropdownMenuItem onClick={() => navigate("/dashboard")}>
                       <User className="mr-2 h-4 w-4" />
                       Dashboard
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => navigate("/settings")}>
+                      <Settings className="mr-2 h-4 w-4" />
+                      Settings
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={handleSignOut}>
                       <LogOut className="mr-2 h-4 w-4" />
